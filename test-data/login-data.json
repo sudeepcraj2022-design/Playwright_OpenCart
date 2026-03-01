@@ -1,0 +1,16 @@
+[
+  {
+    "testId": "AUTH-01",
+    "description": "Valid Login",
+    "email": "mebiw60112@hudisk.com",
+    "password": "pFkX3#hvqK@EQL",
+    "expectedStatus": "success"
+  },
+  {
+    "testId": "AUTH-02",
+    "description": "Invalid Password",
+    "email": "mebiw60112@hudisk.com",
+    "password": "wrongpassword",
+    "expectedStatus": "fail"
+  }
+]
