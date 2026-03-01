@@ -2,7 +2,7 @@ import {test, expect } from "@playwright/test";
 
 test('Get Booking details by ID - path parameter', async({request}) => {
 
-    const bookingID = 1; //pass booking ID as path parameter
+    const bookingID = 2; //pass booking ID as path parameter
     const response = await request.get(`https://restful-booker.herokuapp.com/booking/${bookingID}`);
     
     //Parse response and print
