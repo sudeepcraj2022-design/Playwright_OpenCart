@@ -38,28 +38,32 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    // 1. The Setup Project: Runs ONLY once to log you in
-    {
-      name: 'setup',
-      testMatch: /auth\.setup\.ts/, // Any file ending in .setup.ts will run here
+    // 1. The Setup Project: Runs once for authentication
+  {
+    name: 'setup',
+    testMatch: /auth\.setup\.ts/,
+  },
+
+  // 2. Authenticated Project: Only for tests requiring login
+  {
+    name: 'authenticated',
+    use: { 
+      ...devices['Desktop Chrome'], // Keep device settings here
+      storageState: 'playwright/.auth/user.json',
     },
+    dependencies: ['setup'],
+    testMatch: /tests\/logged-in\/.*\.spec\.ts/, // Matches your folder structure
+  },
 
-    // 2. The Test Project: Uses the session created by the 'setup' project
-    {
-      name: 'chromium',
-      use: { 
-        ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/user.json', // Path where session is saved
-      },
-      dependencies: ['setup'], // This forces the 'setup' project to run FIRST
-
-      testIgnore: /.*\.setup\.ts/, // This tells chromium NOT to run the setup file again
+  // 3. Anonymous Project: Only for public-facing tests
+  {
+    name: 'public',
+    use: { 
+      ...devices['Desktop Chrome'], // Keep device settings here
+      storageState: undefined,     // Explicitly no cookies
     },
-
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
+    testMatch: /tests\/public\/.*\.spec\.ts/, // Matches your folder structure
+  },
 
     // {
     //   name: 'firefox',
