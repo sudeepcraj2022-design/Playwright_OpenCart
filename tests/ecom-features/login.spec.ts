@@ -1,7 +1,7 @@
 import {test, expect, Page} from "@playwright/test";
-import {LoginPage} from "../pages/login-page";
-import {HomePage} from "../pages/home-page";
-import loginData from '../test-data/login-data.json';
+import {LoginPage} from "../../pages/login-page";
+import {HomePage} from "../../pages/home-page";
+import loginData from '../../test-data/login-data.json';
 
 
 test('Login with valid credentials', async ({page}) => {

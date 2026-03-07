@@ -38,10 +38,28 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // 1. The Setup Project: Runs ONLY once to log you in
+    {
+      name: 'setup',
+      testMatch: /auth\.setup\.ts/, // Any file ending in .setup.ts will run here
+    },
+
+    // 2. The Test Project: Uses the session created by the 'setup' project
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json', // Path where session is saved
+      },
+      dependencies: ['setup'], // This forces the 'setup' project to run FIRST
+
+      testIgnore: /.*\.setup\.ts/, // This tells chromium NOT to run the setup file again
     },
+
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
 
     // {
     //   name: 'firefox',

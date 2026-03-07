@@ -1,6 +1,6 @@
 import {test, expect, Page} from "@playwright/test";
-import {LoginPage} from "../pages/login-page";
-import loginData from '../test-data/login-data.json';
+import {LoginPage} from "../../pages/login-page";
+import loginData from '../../test-data/login-data.json';
 
 for(const data of loginData){
     test(`Login Data Driven: ${data.description} ${data.testId}`, async ({page}) => {

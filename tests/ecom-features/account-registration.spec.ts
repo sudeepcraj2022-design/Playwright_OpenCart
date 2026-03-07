@@ -1,8 +1,8 @@
 import {expect, test} from '@playwright/test';
-import { BasePage } from '../pages/base-page';
-import{HomePage} from '../pages/home-page';
-import { RegistrationPage } from '../pages/registration-page';
-import { RandomDataUtil } from '../utils/random-data-generator';
+import { BasePage } from '../../pages/base-page';
+import{HomePage} from '../../pages/home-page';
+import { RegistrationPage } from '../../pages/registration-page';
+import { RandomDataUtil } from '../../utils/random-data-generator';
 
 test ('User Registration Test', async({page}) => {
     
