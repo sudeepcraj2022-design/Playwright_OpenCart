@@ -18,6 +18,9 @@ test('Schema Validation', async ({ request }) => {
     const ajv = new Ajv();
     const validate = ajv.compile(schemaBody); //Returns a validate function
     const isValid = validate(responseBody); //Validates if the response matches the schema
-    expect(isValid).toBeTruthy();
+    if(!isValid){
+        console.log("AJV Errors:", validate.errors);
+    }
+    expect(isValid, `Schema validation failed: ${JSON.stringify(validate.errors)}`).toBeTruthy();
 
 })

@@ -23,7 +23,7 @@ test('Basic Authentication', async ({ request }) => {
 });
 
 //3)API key authentication
-test.only('API key auth1', async ({ request }) => {
+test('API key auth1', async ({ request }) => {
 
     const response = await request.get('http://api.weatherapi.com/v1/current.json', {
         params: { q: 'Bangalore', key: '0b5d83d93dd741cb8d375026260303'}

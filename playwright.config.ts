@@ -11,7 +11,7 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+export default defineConfig({ 
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -63,6 +63,16 @@ export default defineConfig({
       storageState: undefined,     // Explicitly no cookies
     },
     testMatch: /tests\/public\/.*\.spec\.ts/, // Matches your folder structure
+  },
+
+  // 4. API Project: No browser needed, just requests
+  {
+    name: 'api',
+    testMatch: /tests\/api-tests\/.*\.spec\.ts/, // This fixes the visibility!
+    use: {
+      // You can set global API settings here if you want
+      //baseURL: 'https://restful-booker.herokuapp.com',
+    },
   },
 
     // {
