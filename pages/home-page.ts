@@ -14,6 +14,8 @@ export class HomePage extends BasePage{
     private readonly registerLink: Locator;
     private readonly loginLink: Locator;
     private readonly logoutLink: Locator;
+    private readonly allDeskTopsLink: Locator;
+    private readonly desktopDropdwn: Locator;
     
 constructor(page: Page){
         super(page)
@@ -28,6 +30,8 @@ constructor(page: Page){
         this.registerLink = this.page.getByRole('link', { name: 'Register' });
         this.loginLink = this.page.getByRole('link', { name: 'Login' });
         this.logoutLink = this.page.locator('ul.dropdown-menu').getByRole('link', { name: 'Logout' });
+        this.allDeskTopsLink = this.page.getByRole('link', { name: 'Show AllDesktops' });
+        this.desktopDropdwn = this.page.getByText('Desktops', { exact: true })
     }
 
         async clickLogin() {
@@ -43,6 +47,15 @@ constructor(page: Page){
     async clickLogout() {
         await this.myAccountMenu.click();
         await this.logoutLink.click();
+    }
+
+    async clickHome() {
+        await this.homeButton.click();
+    }
+
+    async clickShowAllDesktops() {
+        await this.desktopDropdwn.hover();
+        await this.allDeskTopsLink.click();
     }
 
 }
