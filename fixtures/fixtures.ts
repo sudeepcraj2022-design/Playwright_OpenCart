@@ -3,6 +3,7 @@ import { LoginPage } from '../pages/login-page';
 import { HomePage } from '../pages/home-page';
 import { RegistrationPage } from '../pages/registration-page';
 import { DesktopPage } from '../pages/desktops-page';
+import { CartPage } from '../pages/cart-page';
 
 // 1. Define the types for your fixtures
 type MyFixtures = {
@@ -10,6 +11,7 @@ type MyFixtures = {
   homePage: HomePage;
   registrationPage: RegistrationPage;
   desktopPage: DesktopPage;
+  cartPage: CartPage;
 };
 
 // 2. Extend the base test object
@@ -39,6 +41,11 @@ export const test = base.extend<MyFixtures>({
     const desktopPage = new DesktopPage(page);
     await desktopPage.navigateTo('index.php?route=product/category&path=20');
     await use(desktopPage);
+  },
+
+  cartPage: async ({ page }, use) => {
+    const cartPage = new CartPage(page);
+    await use(cartPage);
   },
 });
 
