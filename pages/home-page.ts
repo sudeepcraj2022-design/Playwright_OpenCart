@@ -4,7 +4,7 @@ import { BasePage } from "./base-page";
 
 export class HomePage extends BasePage {
 
-    private readonly pageUrl = '/';
+    private readonly pageUrl = '';
     private readonly homeButton: Locator;
     private readonly currencyDropDown: Locator;
     private readonly searchField: Locator;
