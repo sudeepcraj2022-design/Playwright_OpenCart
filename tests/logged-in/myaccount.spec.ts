@@ -1,14 +1,12 @@
-import { test, expect } from '@playwright/test';
-import {LoginPage} from "../../pages/login-page";
+import {test, expect} from '../../fixtures/fixtures.ts';
 
-test('should access account page directly', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test('should access account page directly', async ({ loginPage, page }) => {
 
     //const cookies = await page.context().cookies();
     //console.log('Cookies loaded:', cookies);
 
     // Navigate directly to the account page (bypassing login)
-    await loginPage.navigateTo('index.php?route=account/account');
+    await loginPage.navigateToLoginPage();
 
     // If the global setup worked, this element will be visible immediately
     // Replace 'My Account' with the actual text or selector on your page

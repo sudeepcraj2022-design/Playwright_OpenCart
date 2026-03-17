@@ -2,7 +2,7 @@ import {test, expect} from '../../fixtures/fixtures.ts';
 
 test('Add item to cart and remove item', async({desktopPage, cartPage, page}) => {
 
-    await desktopPage.navigateTo('index.php?route=product/category&path=20');
+    await desktopPage.navigateToDesktops();
     const itemName = 'HTC Touch HD'
     await desktopPage.addItemToCart(itemName);
     const successMessage = desktopPage.getSuccessMessage();

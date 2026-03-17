@@ -1,16 +1,11 @@
-import {expect, test} from '@playwright/test';
+import {test, expect} from '../../fixtures/fixtures.ts';
 import { BasePage } from '../../pages/base-page';
-import{HomePage} from '../../pages/home-page';
-import { RegistrationPage } from '../../pages/registration-page';
 import { RandomDataUtil } from '../../utils/random-data-generator';
 
-test ('User Registration Test', async({page}) => {
+test ('User Registration Test', async({homePage, registrationPage, page}) => {
     
-    const homePage = new HomePage(page);
-    await homePage.navigateTo('');
+    await homePage.navigateToHome()
     await homePage.clickRegister();
-
-    const registrationPage = new RegistrationPage(page);
 
     await registrationPage.register(
         RandomDataUtil.getFirstName(),
