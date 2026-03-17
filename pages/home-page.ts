@@ -1,23 +1,24 @@
-import {Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./base-page";
 
 
-export class HomePage extends BasePage{
+export class HomePage extends BasePage {
 
+    private readonly pageUrl = '/';
     private readonly homeButton: Locator;
     private readonly currencyDropDown: Locator;
     private readonly searchField: Locator;
     private readonly searchButton: Locator;
     private readonly cartTotal: Locator;
-    private readonly myAccountMenu: Locator; 
+    private readonly myAccountMenu: Locator;
     private readonly wishListLink: Locator;
     private readonly registerLink: Locator;
     private readonly loginLink: Locator;
     private readonly logoutLink: Locator;
     private readonly allDeskTopsLink: Locator;
     private readonly desktopDropdwn: Locator;
-    
-constructor(page: Page){
+
+    constructor(page: Page) {
         super(page)
 
         this.homeButton = this.page.locator('#logo');
@@ -34,7 +35,14 @@ constructor(page: Page){
         this.desktopDropdwn = this.page.getByText('Desktops', { exact: true })
     }
 
-        async clickLogin() {
+    //Navigation Method
+    async navigateToHome() {
+        await this.page.goto(this.pageUrl);
+
+    }
+
+    //Action Methods
+    async clickLogin() {
         await this.myAccountMenu.click();
         await this.loginLink.click();
     }

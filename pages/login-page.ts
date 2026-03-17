@@ -1,7 +1,8 @@
-import {Page, Locator } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
 
-export class LoginPage extends BasePage{
+export class LoginPage extends BasePage {
+    private readonly pageUrl = 'index.php?route=account/login';
     private readonly emailInput: Locator;
     private readonly passwordInput: Locator;
     private readonly forgotPassword: Locator;
@@ -10,32 +11,39 @@ export class LoginPage extends BasePage{
     public readonly accountInfoBtn: Locator;
     public readonly errorMessage: Locator;
 
-constructor(page: Page){
-    super(page);
+    constructor(page: Page) {
+        super(page);
 
-    this.emailInput = page.getByLabel('E-Mail Address', { exact: true });
-    this.passwordInput = page.getByLabel('Password', { exact: true });
-    this.loginButton = page.getByRole('button', { name: 'Login' });
-    this.forgotPassword = page.locator('#content').getByRole('link', { name: 'Forgotten Password' });
-    this.continueBtn = page.getByRole('link', { name: 'Continue' });
-    this.accountInfoBtn = page.getByRole('link', { name: 'Edit your account information' });
-    this.errorMessage = page.getByText('Warning: No match for E-Mail Address and/or Password.', { exact: true });
+        this.emailInput = page.getByLabel('E-Mail Address', { exact: true });
+        this.passwordInput = page.getByLabel('Password', { exact: true });
+        this.loginButton = page.getByRole('button', { name: 'Login' });
+        this.forgotPassword = page.locator('#content').getByRole('link', { name: 'Forgotten Password' });
+        this.continueBtn = page.getByRole('link', { name: 'Continue' });
+        this.accountInfoBtn = page.getByRole('link', { name: 'Edit your account information' });
+        this.errorMessage = page.getByText('Warning: No match for E-Mail Address and/or Password.', { exact: true });
 
-}
+    }
 
-//Action Methods
+    //Navigation Method
+    async navigateToLoginPage() {
+        await this.page.goto(this.pageUrl);
 
-async login(email: string, password: string) {
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
+    }
 
-}
+    //Action Methods
 
-async clickContinueToRegister() {
-    await this.continueBtn.click();
+    async login(email: string, password: string) {
+        await this.emailInput.fill(email);
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
 
-}
+    }
+
+    async clickContinueToRegister() {
+        await this.continueBtn.click();
+
+    }
+
 
 }
 

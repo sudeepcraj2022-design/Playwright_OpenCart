@@ -1,7 +1,9 @@
-import {Page, Locator } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
 
-export class RegistrationPage extends BasePage{
+export class RegistrationPage extends BasePage {
+
+    private readonly pageUrl = '/index.php?route=account/register';
     private readonly firstNameField: Locator;
     private readonly lastNameField: Locator;
     private readonly emailField: Locator;
@@ -12,44 +14,44 @@ export class RegistrationPage extends BasePage{
     private readonly continueBtn: Locator;
     public readonly successLink: Locator;
 
-constructor(page: Page){
-    super(page);
-    this.firstNameField = page.getByRole('textbox', { name: 'First Name' });
-    this.lastNameField = page.getByLabel('Last Name', { exact: true });
-    this.emailField = page.getByLabel('E-Mail', { exact: true });
-    this.telephoneField = page.getByLabel('Telephone', { exact: true });
-    this.passwordField = page.getByLabel('Password', { exact: true });
-    this.passwordConfirmField = page.getByLabel('Password Confirm', { exact: true });
-    this.privacyPolicyCheckBox = page.getByRole('checkbox');
-    this.continueBtn = page.getByRole('button', {name: 'Continue'});
-    this.successLink = page.getByRole('link', { name: 'Success' });
+    constructor(page: Page) {
+        super(page);
+        this.firstNameField = page.getByRole('textbox', { name: 'First Name' });
+        this.lastNameField = page.getByLabel('Last Name', { exact: true });
+        this.emailField = page.getByLabel('E-Mail', { exact: true });
+        this.telephoneField = page.getByLabel('Telephone', { exact: true });
+        this.passwordField = page.getByLabel('Password', { exact: true });
+        this.passwordConfirmField = page.getByLabel('Password Confirm', { exact: true });
+        this.privacyPolicyCheckBox = page.getByRole('checkbox');
+        this.continueBtn = page.getByRole('button', { name: 'Continue' });
+        this.successLink = page.getByRole('link', { name: 'Success' });
 
-}
-
-//Action Methods
-
-async navigateTo(path: string) {
-        // This combines with your URL in the config
-        await this.page.goto(path);
     }
 
-async register(
-    firstName: string,
-    lastName: string,
-    email: string,
-    telephone: string,
-    password: string) {
 
-    await this.firstNameField.fill(firstName);
-    await this.lastNameField.fill(lastName);
-    await this.emailField.fill(email);
-    await this.telephoneField.fill(telephone);
-    await this.passwordField.fill(password);
-    await this.passwordConfirmField.fill(password);
-    await this.privacyPolicyCheckBox.check();
-    await this.continueBtn.click();
-    
-}
+    //Navigation Method
+    async navigateToRegistration() {
+        await this.page.goto(this.pageUrl);
+    }
+
+    //Action Methods
+    async register(
+        firstName: string,
+        lastName: string,
+        email: string,
+        telephone: string,
+        password: string) {
+
+        await this.firstNameField.fill(firstName);
+        await this.lastNameField.fill(lastName);
+        await this.emailField.fill(email);
+        await this.telephoneField.fill(telephone);
+        await this.passwordField.fill(password);
+        await this.passwordConfirmField.fill(password);
+        await this.privacyPolicyCheckBox.check();
+        await this.continueBtn.click();
+
+    }
 
 
 }

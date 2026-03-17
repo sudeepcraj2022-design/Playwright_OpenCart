@@ -3,10 +3,10 @@ import { BasePage } from "./base-page";
 
 export class DesktopPage extends BasePage {
 
+    private readonly pageUrl = 'index.php?route=product/category&path=20';
     private readonly productContainer: Locator;
     private readonly successMessage: Locator;
     private readonly checkoutButton: Locator;
-
 
     constructor(page: Page) {
         super(page);
@@ -15,6 +15,11 @@ export class DesktopPage extends BasePage {
         this.checkoutButton = page.getByTitle('Checkout');
     }
 
+    //Navigation Method
+    async navigateToDesktops() {
+        await this.page.goto(this.pageUrl);
+
+    }
 
     //Action methods
     async addItemToCart(productName: string) {
@@ -23,13 +28,11 @@ export class DesktopPage extends BasePage {
     }
 
     getSuccessMessage() {
-       return this.successMessage;
+        return this.successMessage;
     }
 
-    async clickCheckout(){
+    async clickCheckout() {
         await this.checkoutButton.click();
     }
-
-
 
 }

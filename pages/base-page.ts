@@ -9,7 +9,7 @@ export class BasePage {
 
 
     }
-    
+
     //Action Methods:
 
     async navigateTo(path: string) {

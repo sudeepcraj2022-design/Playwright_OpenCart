@@ -19,27 +19,22 @@ export const test = base.extend<MyFixtures>({
   
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
-    await loginPage.navigateTo('index.php?route=account/login');
     await use(loginPage);
   },
 
   homePage: async ({ page }, use) => {
     const homePage = new HomePage(page);
-    // Use your custom navigation method
-    await homePage.navigateTo('/'); 
     await use(homePage);
   },
 
   registrationPage: async ({ page }, use) => {
     const registrationPage = new RegistrationPage(page);
-    // Navigating here ensures the test is ready to register immediately
     await registrationPage.navigateTo('/index.php?route=account/register');
     await use(registrationPage);
   },
 
     desktopPage: async ({ page }, use) => {
     const desktopPage = new DesktopPage(page);
-    await desktopPage.navigateTo('index.php?route=product/category&path=20');
     await use(desktopPage);
   },
 

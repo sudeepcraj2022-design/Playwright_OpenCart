@@ -9,8 +9,7 @@ export class CartPage extends BasePage {
     private readonly checkoutButton: Locator;
     private readonly cartRow: Locator;
 
-
-
+    
     constructor(page: Page){
         super(page);
         this.buttonsContainer = page.locator('div.buttons.clearfix');
@@ -20,13 +19,13 @@ export class CartPage extends BasePage {
 
     }
 
-    //Action methods
-
+    
+    //Navigation Method
     async navigateToCart() {
         await this.page.goto(this.pageUrl);
         
     }
-
+    //Action methods
     async removeItemFromCart(productName: string){
         const productRow = this.cartRow.filter({hasText: productName});
         await productRow.locator('button[data-original-title="Remove"]').click();
