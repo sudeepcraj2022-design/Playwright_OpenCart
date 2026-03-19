@@ -17,6 +17,7 @@ export class HomePage extends BasePage {
     private readonly logoutLink: Locator;
     private readonly allDeskTopsLink: Locator;
     private readonly desktopDropdwn: Locator;
+    private readonly logoutMessage: Locator;
 
     constructor(page: Page) {
         super(page)
@@ -32,7 +33,8 @@ export class HomePage extends BasePage {
         this.loginLink = this.page.getByRole('link', { name: 'Login' });
         this.logoutLink = this.page.locator('ul.dropdown-menu').getByRole('link', { name: 'Logout' });
         this.allDeskTopsLink = this.page.getByRole('link', { name: 'Show AllDesktops' });
-        this.desktopDropdwn = this.page.getByText('Desktops', { exact: true })
+        this.desktopDropdwn = this.page.getByText('Desktops', { exact: true });
+        this.logoutMessage = this.page.getByRole('heading', {name: 'Account Logout'});
     }
 
     //Navigation Method
@@ -64,6 +66,10 @@ export class HomePage extends BasePage {
     async clickShowAllDesktops() {
         await this.desktopDropdwn.hover();
         await this.allDeskTopsLink.click();
+    }
+
+    getLogoutMessage(){
+        return this.logoutMessage;
     }
 
 }

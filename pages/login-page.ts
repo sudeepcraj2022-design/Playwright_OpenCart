@@ -9,7 +9,8 @@ export class LoginPage extends BasePage {
     private readonly loginButton: Locator;
     private readonly continueBtn: Locator;
     public readonly accountInfoBtn: Locator;
-    public readonly errorMessage: Locator;
+    private readonly warningMessage: Locator;
+
 
     constructor(page: Page) {
         super(page);
@@ -20,8 +21,8 @@ export class LoginPage extends BasePage {
         this.forgotPassword = page.locator('#content').getByRole('link', { name: 'Forgotten Password' });
         this.continueBtn = page.getByRole('link', { name: 'Continue' });
         this.accountInfoBtn = page.getByRole('link', { name: 'Edit your account information' });
-        this.errorMessage = page.getByText('Warning: No match for E-Mail Address and/or Password.', { exact: true });
-
+        this.warningMessage = page.locator('.alert-danger');
+    
     }
 
     //Navigation Method
@@ -42,6 +43,11 @@ export class LoginPage extends BasePage {
     async clickContinueToRegister() {
         await this.continueBtn.click();
 
+    }
+
+    //Getter methods
+    getWarningMessage(){
+        return this.warningMessage;
     }
 
 
