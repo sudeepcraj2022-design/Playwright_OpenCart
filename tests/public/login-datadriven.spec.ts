@@ -10,7 +10,7 @@ for(const data of loginData){
     if(data.expectedStatus === 'success'){
         await expect(loginPage.accountInfoBtn).toBeVisible();
     }else{
-        await expect(loginPage.errorMessage).toBeVisible();
+        await expect(loginPage.getWarningMessage()).toContainText('No match');
     }
 });
 

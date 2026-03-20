@@ -13,6 +13,8 @@ export class RegistrationPage extends BasePage {
     private readonly privacyPolicyCheckBox: Locator;
     private readonly continueBtn: Locator;
     public readonly successLink: Locator;
+    private readonly warningMessage: Locator;
+    private readonly missingFieldMessages: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -25,6 +27,8 @@ export class RegistrationPage extends BasePage {
         this.privacyPolicyCheckBox = page.getByRole('checkbox');
         this.continueBtn = page.getByRole('button', { name: 'Continue' });
         this.successLink = page.getByRole('link', { name: 'Success' });
+        this.warningMessage = page.locator('.alert-danger');
+        this.missingFieldMessages = page.locator('.text-danger');
 
     }
 
@@ -51,6 +55,19 @@ export class RegistrationPage extends BasePage {
         await this.privacyPolicyCheckBox.check();
         await this.continueBtn.click();
 
+    }
+
+    async clickContinue() {
+        this.continueBtn.click();
+    }
+    
+    //Getter methods
+    getWarningMessage(){
+        return this.warningMessage;
+    }
+
+    getMissingFieldMessages(){
+        return this.missingFieldMessages;
     }
 
 
