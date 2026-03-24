@@ -35,4 +35,12 @@ export class DesktopPage extends BasePage {
         await this.checkoutButton.click();
     }
 
+    async addMultipleItemsToCart(productNames: string[]) {
+        for (const name of productNames) {
+            const product = this.productContainer.filter({ hasText: name });
+            await product.getByRole('button', { name: 'Add to Cart' }).click();
+        }
+
+    }
+
 }

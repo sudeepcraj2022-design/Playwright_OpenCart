@@ -68,6 +68,13 @@ export class HomePage extends BasePage {
         await this.allDeskTopsLink.click();
     }
 
+    
+    async searchItem(itemName: string) {
+        await this.searchField.fill(itemName);
+        await this.searchButton.click();
+    }
+
+    //Getter methods
     getLogoutMessage(){
         return this.logoutMessage;
     }
