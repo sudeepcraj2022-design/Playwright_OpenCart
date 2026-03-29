@@ -5,6 +5,8 @@ import { RegistrationPage } from '../pages/registration-page';
 import { DesktopPage } from '../pages/desktops-page';
 import { CartPage } from '../pages/cart-page';
 import { SearchResultsPage } from '../pages/search-results-page';
+import { ProductComparisonPage } from '../pages/product-comparison-page';
+import { WishListPage } from '../pages/wishlist-page';
 
 // 1. Define the types for your fixtures
 type MyFixtures = {
@@ -14,6 +16,8 @@ type MyFixtures = {
   desktopPage: DesktopPage;
   cartPage: CartPage;
   searchReultsPage: SearchResultsPage;
+  productComparisonPage: ProductComparisonPage;
+  wishlistPage: WishListPage;
 };
 
 // 2. Extend the base test object
@@ -48,6 +52,16 @@ export const test = base.extend<MyFixtures>({
   searchReultsPage: async ({ page }, use) => {
     const searchReultsPage = new SearchResultsPage(page);
     await use(searchReultsPage);
+  },
+
+  productComparisonPage: async ({ page }, use) => {
+    const productComparisonPage = new ProductComparisonPage(page);
+    await use(productComparisonPage);
+  },
+
+  wishlistPage: async ({ page }, use) => {
+    const wishlistPage = new WishListPage(page);
+    await use(wishlistPage);
   },
 });
 

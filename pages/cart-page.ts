@@ -8,6 +8,7 @@ export class CartPage extends BasePage {
     private readonly continueShoppingBtn: Locator;
     private readonly checkoutButton: Locator;
     private readonly cartRow: Locator;
+    private readonly cartWeightMessage: Locator;
 
 
     constructor(page: Page) {
@@ -16,6 +17,8 @@ export class CartPage extends BasePage {
         this.continueShoppingBtn = this.buttonsContainer.getByRole('link', { name: 'Continue Shopping' });
         this.checkoutButton = this.buttonsContainer.getByRole('link', { name: 'Checkout' });
         this.cartRow = page.locator('#content table tbody tr');
+        this.cartWeightMessage = page.getByRole('heading', { name: /Shopping Cart/i });
+        
 
     }
 
@@ -39,7 +42,16 @@ export class CartPage extends BasePage {
         }
 
     }
+    
+    async updateItemCount(productName: string, count: string) {
+        const productRow = this.cartRow.filter({ hasText: productName });
+        await this.page.locator('tr').filter({ hasText: productName }).getByRole('textbox').fill(count)
+        await productRow.locator('button[data-original-title="Update"]').click();
+    }
 
+    
+
+    //Getter methods
     getProductRow(productName: string): Locator {
         return this.cartRow.filter({ hasText: productName });
 
@@ -47,6 +59,11 @@ export class CartPage extends BasePage {
 
     getCartEmptyMessage() {
         return this.page.locator('#content').getByText('Your shopping cart is empty!', { exact: true });
+    }
+
+    getCartWeightMessage(): Locator {
+        return this.cartWeightMessage;
+
     }
 
 }

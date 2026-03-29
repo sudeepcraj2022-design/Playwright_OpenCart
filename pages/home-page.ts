@@ -63,6 +63,10 @@ export class HomePage extends BasePage {
         await this.homeButton.click();
     }
 
+    async clickWishList() {
+        await this.wishListLink.click();
+    }
+
     async clickShowAllDesktops() {
         await this.desktopDropdwn.hover();
         await this.allDeskTopsLink.click();
