@@ -1,5 +1,4 @@
 import { test, expect } from '../../fixtures/fixtures.ts';
-import { ok } from "assert";
 import { RandomDataUtil } from '../../utils/random-data-generator';
 
 test('Create user using POST request', async({page, request}) => {
